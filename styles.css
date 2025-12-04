@@ -1,0 +1,53 @@
+/*
+=====================================
+Custom Styles for LogicFlow Systems
+=====================================
+*/
+
+/* --- 1. Typography and Base --- */
+
+/* Configure the font-family to use 'Inter' loaded via Google Fonts */
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+/* --- 2. Custom Background Gradient --- */
+
+/* High-contrast, tech-focused background gradient for the <body> */
+.bg-logicflow {
+    background: linear-gradient(145deg, #0e111a 0%, #1a202c 100%);
+}
+
+/* --- 3. Animation Styles --- */
+
+/* Custom highlight for the flow element (if used) */
+.flow-line {
+    background: #3b82f6; /* Blue */
+    animation: flow 4s infinite linear;
+}
+
+/* Keyframes for the flow animation */
+@keyframes flow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* --- 4. Accessibility (Skip Link Styling) --- */
+
+/* Styling for the Skip to Main Content Link (Tailwind utility override for a11y) */
+/* This makes the link visible only when focused (via keyboard navigation) */
+.absolute.left-\[\-9999px\] {
+    position: absolute;
+    left: -9999px;
+}
+
+.absolute.left-\[\-9999px\]:focus {
+    left: 0;
+    top: 0;
+    z-index: 50;
+    padding: 0.75rem; /* p-3 */
+    background-color: white;
+    color: #111827; /* gray-900 */
+    font-weight: 700; /* font-bold */
+}
