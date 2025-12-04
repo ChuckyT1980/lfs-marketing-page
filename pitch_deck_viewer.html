@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogicFlow Pitch Deck - Private Viewing</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #0e111a; }
+        .pdf-container {
+            height: calc(100vh - 40px); /* Full screen minus footer/header space */
+            border: none;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body class="text-gray-100 min-h-screen">
+
+    <div class="p-2 sm:p-4 bg-[#1a1e26] flex justify-between items-center border-b border-gray-700">
+        <h1 class="text-xl font-bold text-blue-400">LogicFlow Systems Pitch Deck</h1>
+        <div id="tracker-status" class="text-xs text-gray-500 flex items-center">
+             <!-- Placeholder for future tracking implementation -->
+            <span class="h-2 w-2 rounded-full bg-green-500 mr-2 animate-pulse"></span>
+            Viewing Session Active
+        </div>
+    </div>
+    
+    <!-- PDF EMBED -->
+    <div class="h-full w-full">
+        <embed src="final_pitch_deck.pdf" type="application/pdf" class="pdf-container w-full h-full"/>
+    </div>
+    
+    <div class="p-2 text-center text-sm text-gray-500 border-t border-gray-700">
+        This document is for private viewing only.
+    </div>
+    
+    <script>
+        // NOTE: For real-world use, this script would send a server request (e.g., a fetch call to a Netlify function or CRM API)
+        // to record the URL and timestamp, confirming the pitch deck was opened.
+        console.log("LOGICFLOW PITCH DECK VIEWED: " + new Date().toISOString());
+
+        // Simple tracking simulation for console output
+        const trackerStatus = document.getElementById('tracker-status');
+        setTimeout(() => {
+            trackerStatus.querySelector('span').classList.remove('animate-pulse', 'bg-green-500');
+            trackerStatus.querySelector('span').classList.add('bg-green-700');
+            trackerStatus.textContent = 'Session tracked.';
+        }, 5000);
+    </script>
+</body>
+</html>
