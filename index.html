@@ -36,27 +36,36 @@
     <!-- Main Container -->
     <div class="max-w-7xl mx-auto p-4 sm:p-8">
 
-        <!-- Header and Navigation -->
-        <header class="flex justify-between items-center py-6 border-b border-gray-800">
-            <div class="text-2xl font-bold text-blue-400">
-                LogicFlow
-                <span class="text-sm text-gray-500 font-medium tracking-wider block sm:inline">Systems & Solutions</span>
+        <!-- Header and Navigation - REFACTORED FOR MOBILE -->
+        <header class="py-6 border-b border-gray-800">
+            <div class="flex justify-between items-start md:items-center flex-col md:flex-row">
+                <!-- Logo and Tagline -->
+                <div class="text-2xl font-bold text-blue-400 mb-4 md:mb-0">
+                    LogicFlow
+                    <span class="text-sm text-gray-500 font-medium tracking-wider block">Systems & Solutions</span>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-6 text-gray-400 items-center">
+                    <a href="#about" class="hover:text-blue-400 transition">About Us</a>
+                    <a href="#services" class="hover:text-blue-400 transition">Services</a>
+                    <a href="#testimonials" class="hover:text-blue-400 transition">Testimonials</a>
+                    <a href="#mission" class="hover:text-blue-400 transition">Our Mission</a>
+                    <a href="#contact" class="hover:text-blue-400 transition">Contact</a>
+                    <!-- Investor Link -->
+                    <a href="/pitch_dashboard.html" target="_blank" class="px-3 py-1 bg-amber-500 text-gray-900 font-semibold rounded-lg text-sm hover:bg-amber-400 transition">
+                        Investor Access
+                    </a>
+                </nav>
             </div>
-            <nav class="hidden md:flex space-x-6 text-gray-400 items-center">
-                <a href="#about" class="hover:text-blue-400 transition">About Us</a>
-                <a href="#services" class="hover:text-blue-400 transition">Services</a>
-                <a href="#testimonials" class="hover:text-blue-400 transition">Testimonials</a>
-                <a href="#mission" class="hover:text-blue-400 transition">Our Mission</a>
-                <a href="#contact" class="hover:text-blue-400 transition">Contact</a>
-                <!-- Investor Link points to the deployed dashboard file -->
-                <a href="/pitch_dashboard.html" target="_blank" class="px-3 py-1 bg-amber-500 text-gray-900 font-semibold rounded-lg text-sm hover:bg-amber-400 transition">
-                    Investor Access
-                </a>
-            </nav>
-            <a href="#contact" class="md:hidden p-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold transition">Start Flow</a>
+
+            <!-- Mobile CTA (Visible on small screens, primary action) -->
+            <a href="#contact" class="w-full mt-4 md:hidden block p-3 text-center rounded-lg bg-green-500 hover:bg-green-600 text-gray-900 font-bold text-sm transition">
+                Request Logic Flow Assessment
+            </a>
         </header>
 
-        <!-- Hero Section -->
+        <!-- Hero Section - UPDATED WITH DUAL CTAs -->
         <section class="text-center py-20 sm:py-32">
             <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white mb-4">
                 Mastering the <span class="text-blue-400">Logic Flow.</span>
@@ -64,9 +73,18 @@
             <h2 class="text-xl sm:text-3xl text-gray-300 font-light max-w-3xl mx-auto mb-8">
                 Intelligent Automation and Enterprise Architecture designed to eliminate cost friction and maximize efficiency.
             </h2>
-            <a href="#mission" class="inline-block px-8 py-3 bg-green-500 text-gray-900 font-bold rounded-full shadow-lg hover:bg-green-400 transition transform hover:scale-105">
-                See How We Transform Operations
-            </a>
+            
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+                <!-- Primary CTA (Remains focused on assessment) -->
+                <a href="#contact" class="inline-block px-8 py-3 bg-green-500 text-gray-900 font-bold rounded-full shadow-lg hover:bg-green-400 transition transform hover:scale-105">
+                    Request Assessment
+                </a>
+                
+                <!-- Secondary CTA (New: Pitch Deck Link) -->
+                <a href="/pitch_deck_viewer.html" target="_blank" class="inline-block px-8 py-3 border border-blue-500 text-blue-400 font-bold rounded-full shadow-lg hover:bg-blue-900/50 transition transform hover:scale-105">
+                    View Full Pitch Deck
+                </a>
+            </div>
         </section>
 
         <!-- Value Proposition Section (What We Are About) -->
@@ -265,12 +283,8 @@
             <a href="/pitch_dashboard.html" target="_blank" class="text-amber-500 hover:text-amber-400 transition font-semibold">
                 Investor Access
             </a>
-            <!-- Pitch Deck Link in Footer (Assumes final_pitch_deck.pdf is in the root) -->
-            <a href="/final_pitch_deck.pdf" target="_blank" class="text-blue-500 hover:text-blue-400 transition font-semibold">
-                View Pitch Deck
-            </a>
+            <!-- REMOVED: The View Pitch Deck Link was here -->
         </footer>
     </div>
 </body>
 </html>
-index.html
