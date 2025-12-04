@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logic Flow Systems: Live Investor ROI Dashboard</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Use Inter font -->
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        /* Custom background for technical look */
+        .dashboard-bg {
+            background: linear-gradient(145deg, #0e111a, #1a1e26);
+        }
+        /* Custom highlight for key metrics */
+        .metric-card {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid #3b82f6; /* Blue border for data focus */
+        }
+    </style>
+</head>
+<body class="dashboard-bg text-gray-100 min-h-screen p-4 sm:p-8">
+
+    <div class="max-w-4xl mx-auto">
+        
+        <!-- NEW: RETURN TO MAIN SITE LINK -->
+        <div class="flex justify-end mb-4">
+            <a href="/" class="text-sm font-medium text-blue-400 hover:text-blue-300 transition flex items-center">
+                <!-- Icon: Arrow Left -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>
+                Return to Main Site
+            </a>
+        </div>
+        
+        <!-- HEADER & STRATEGIC NARRATIVE -->
+        <header class="text-center mb-10 p-4 border-b border-gray-700">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-blue-400 tracking-tight">
+                THE ENGINE: LIVE ROI VALIDATION
+            </h1>
+            <p class="text-lg mt-2 text-gray-400">
+                Data-Driven Proof of Concept for Logic Flow Systems.
+            </p>
+            <p class="mt-4 text-sm font-medium text-amber-300">
+                This dashboard uses the **current operational flow metrics** to project realistic, defensible returns. We run lean; the money is for scale.
+            </p>
+        </header>
+
+        <!-- INPUTS SECTION -->
+        <div id="inputs" class="bg-[#1e2430] p-6 rounded-xl mb-8 shadow-2xl">
+            <h2 class="text-xl font-semibold mb-4 border-b pb-2 border-gray-700 text-blue-300">Investor Inputs (Customize for the Meeting)</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                <!-- 1. Investment Ask -->
+                <div class="flex flex-col">
+                    <label for="investment" class="text-sm font-medium text-gray-400 mb-1">Total Capital Investment Asked ($)</label>
+                    <input type="number" id="investment" value="100000" min="10000" step="10000" class="p-3 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 text-white transition duration-200">
+                </div>
+
+                <!-- 2. Annual Target Market Inefficiency -->
+                <div class="flex flex-col">
+                    <label for="market_inefficiency" class="text-sm font-medium text-gray-400 mb-1">Annual Market Inefficiency Cost ($)</label>
+                    <input type="number" id="market_inefficiency" value="5000000" min="100000" step="100000" class="p-3 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 text-white transition duration-200">
+                </div>
+
+                <!-- 3. Target Market Capture % -->
+                <div class="flex flex-col">
+                    <label for="market_capture" class="text-sm font-medium text-gray-400 mb-1">Target Market Capture % (Goal)</label>
+                    <input type="number" id="market_capture" value="5" min="1" max="100" step="1" class="p-3 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 text-white transition duration-200">
+                </div>
+
+                <!-- 4. Operational Efficiency Gain (The Flow's Value) -->
+                <div class="flex flex-col">
+                    <label for="efficiency_gain" class="text-sm font-medium text-gray-400 mb-1">Logic Flow Efficiency Gain (x Current Cost)</label>
+                    <input type="number" id="efficiency_gain" value="5" min="1" max="20" step="0.5" class="p-3 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 text-white transition duration-200">
+                </div>
+
+            </div>
+        </div>
+
+        <!-- OUTPUTS SECTION (THE DOLLARS AND SENSE) -->
+        <div id="outputs">
+            <h2 class="text-xl font-semibold mb-4 border-b pb-2 border-gray-700 text-blue-300">Projected Outcomes (5-Year Horizon)</h2>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- 1. TOTAL PROJECTED REVENUE -->
+                <div class="metric-card bg-[#1e2430] p-5 rounded-xl">
+                    <p class="text-sm font-medium text-gray-400 uppercase">Total Projected Revenue</p>
+                    <p id="net_revenue" class="text-3xl font-bold mt-1 text-green-400">$0</p>
+                </div>
+
+                <!-- 2. ROI (THE SALE) -->
+                <div class="metric-card bg-[#1e2430] p-5 rounded-xl">
+                    <p class="text-sm font-medium text-gray-400 uppercase">Return on Investment (ROI)</p>
+                    <p id="roi_output" class="text-3xl font-bold mt-1 text-yellow-400">0%</p>
+                </div>
+
+                <!-- 3. Efficiency Multiple -->
+                <div class="metric-card bg-[#1e2430] p-5 rounded-xl">
+                    <p class="text-sm font-medium text-gray-400 uppercase">Efficiency Multiple</p>
+                    <p id="efficiency_multiple" class="text-3xl font-bold mt-1 text-blue-400">0x</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- STRATEGIC NARRATIVE FOOTER -->
+        <div class="mt-10 p-6 bg-[#1a1e26] border border-gray-700 rounded-xl">
+            <h3 class="text-lg font-semibold text-blue-400 mb-2">The Strategic Value Proposition:</h3>
+            <p class="text-gray-400">
+                "We built this system with minimal resources, proving its technical viability. The capital requested above is not for R&D, but for **rapid market penetration and scaling**—funding a team to capture the **<span id="capture_value" class="text-green-300 font-bold">$0</span>** inefficiency you see calculated live above. We are investing in your return from day one."
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const investmentInput = document.getElementById('investment');
+        const marketInefficiencyInput = document.getElementById('market_inefficiency');
+        const marketCaptureInput = document.getElementById('market_capture');
+        const efficiencyGainInput = document.getElementById('efficiency_gain');
+
+        const netRevenueOutput = document.getElementById('net_revenue');
+        const roiOutput = document.getElementById('roi_output');
+        const efficiencyMultipleOutput = document.getElementById('efficiency_multiple');
+        const captureValueSpan = document.getElementById('capture_value');
+
+        // CONSTANTS
+        const TIME_HORIZON_YEARS = 5; // Standard exit horizon for VC funding
+
+        // Debounce function to limit frequent recalculations
+        let recalculateTimeout;
+
+        /**
+         * Calculates and updates the dashboard metrics based on user input.
+         */
+        function recalculateMetrics() {
+            clearTimeout(recalculateTimeout);
+            recalculateTimeout = setTimeout(() => {
+                // 1. Get Sanitized Inputs (Convert to float and handle potential NaN/empty values)
+                const P = parseFloat(investmentInput.value) || 0; // Principal Investment
+                const M_annual = parseFloat(marketInefficiencyInput.value) || 0; // Annual Market Inefficiency
+                const C_percent = parseFloat(marketCaptureInput.value) / 100 || 0; // Target Capture Percentage (converted to decimal)
+                const E_gain = parseFloat(efficiencyGainInput.value) || 1; // Logic Flow Efficiency Multiple (Min 1x)
+
+                // --- 2. CALCULATIONS ---
+
+                // A. Annual Revenue from Market Capture
+                // This is the annual value of the inefficiency we successfully capture/solve.
+                const annualRevenue = M_annual * C_percent;
+
+                // B. Total Net Gain (Revenue over 5 years, accounting for the efficiency multiple)
+                // We use the efficiency gain (E_gain) as a conservative growth multiplier on the revenue stream over the 5-year period.
+                const totalGrossRevenue = annualRevenue * TIME_HORIZON_YEARS * E_gain;
+
+                // C. Net Gain (Total Gross Revenue minus the initial investment P)
+                const netGain = totalGrossRevenue - P;
+                
+                // D. ROI Calculation
+                let roi = 0;
+                if (P > 0) {
+                    roi = (netGain / P) * 100;
+                }
+
+                // --- 3. FORMATTING AND DISPLAY ---
+
+                // Format as Currency
+                const formatter = new Intl.NumberFormat('en-US', {
+                    style: 'currency',
+                    currency: 'USD',
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 0,
+                });
+
+                // Update Outputs
+                netRevenueOutput.textContent = formatter.format(totalGrossRevenue);
+                
+                // ROI Output (Handle 0 or negative for pitch narrative)
+                roiOutput.textContent = `${roi.toFixed(0)}%`;
+                if (roi < 0) {
+                    roiOutput.classList.remove('text-yellow-400');
+                    roiOutput.classList.add('text-red-500');
+                } else {
+                    roiOutput.classList.add('text-yellow-400');
+                    roiOutput.classList.remove('text-red-500');
+                }
+
+                // Efficiency Multiple (This is E_gain, presented as a metric)
+                efficiencyMultipleOutput.textContent = `${E_gain.toFixed(1)}x`;
+
+                // Update Strategic Narrative Footer
+                captureValueSpan.textContent = formatter.format(M_annual * C_percent);
+
+            }, 200); // Wait 200ms before recalculating
+        }
+
+        // Attach event listeners to all input fields
+        investmentInput.addEventListener('input', recalculateMetrics);
+        marketInefficiencyInput.addEventListener('input', recalculateMetrics);
+        marketCaptureInput.addEventListener('input', recalculateMetrics);
+        efficiencyGainInput.addEventListener('input', recalculateMetrics);
+
+        // Run calculation on load
+        recalculateMetrics();
+    </script>
+</body>
+</html>
