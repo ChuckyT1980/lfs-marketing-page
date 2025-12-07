@@ -1,208 +1,279 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Logic Flow Systems: Live Investor ROI Dashboard</title>
+    <title>Logic Flow Systems: Agentic ROI Engine</title>
     <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Use Inter font -->
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        /* Custom background for technical look */
-        .dashboard-bg {
-            background: linear-gradient(145deg, #0e111a, #1a1e26);
+        body {
+            font-family: 'Inter', sans-serif;
         }
-        /* Custom highlight for key metrics */
+
+        .dashboard-bg {
+            background: linear-gradient(145deg, #0f141f, #1e2532);
+        }
+
         .metric-card {
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
-            border-left: 4px solid #3b82f6; /* Blue border for data focus */
+            background: #1e293b;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            border-left: 4px solid #3b82f6;
+        }
+
+        /* Console Animation */
+        .console-line {
+            opacity: 0;
+            animation: fadeIn 0.3s forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .blinking-cursor::after {
+            content: '|';
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
         }
     </style>
 </head>
+
 <body class="dashboard-bg text-gray-100 min-h-screen p-4 sm:p-8">
 
-    <div class="max-w-4xl mx-auto">
-        
-        <!-- NEW: RETURN TO MAIN SITE LINK -->
-        <div class="flex justify-end mb-4">
-            <a href="/" class="text-sm font-medium text-blue-400 hover:text-blue-300 transition flex items-center">
-                <!-- Icon: Arrow Left -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>
-                Return to Main Site
-            </a>
+    <div class="max-w-6xl mx-auto">
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-2xl font-bold text-blue-400">LOGIC FLOW <span class="text-gray-500 font-light">INTEGRITY
+                    ENGINE</span></h1>
+            <a href="/" class="text-sm font-medium text-blue-400 hover:text-white transition">Return to Main Site
+                &rarr;</a>
         </div>
-        
-        <!-- HEADER & STRATEGIC NARRATIVE -->
-        <header class="text-center mb-10 p-4 border-b border-gray-700">
-            <h1 class="text-3xl sm:text-4xl font-extrabold text-blue-400 tracking-tight">
-                THE ENGINE: LIVE ROI VALIDATION
-            </h1>
-            <p class="text-lg mt-2 text-gray-400">
-                Data-Driven Proof of Concept for Logic Flow Systems.
-            </p>
-            <p class="mt-4 text-sm font-medium text-amber-300">
-                This dashboard uses the **current operational flow metrics** to project realistic, defensible returns. We run lean; the money is for scale.
-            </p>
-        </header>
 
-        <!-- INPUTS SECTION -->
-        <div id="inputs" class="bg-[#1e2430] p-6 rounded-xl mb-8 shadow-2xl">
-            <h2 class="text-xl font-semibold mb-4 border-b pb-2 border-gray-700 text-blue-300">Investor Inputs (Customize for the Meeting)</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- GRID LAYOUT -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
-                <!-- 1. Investment Ask -->
-                <div class="flex flex-col">
-                    <label for="investment" class="text-sm font-medium text-gray-400 mb-1">Total Capital Investment Asked ($)</label>
-                    <input type="number" id="investment" value="100000" min="10000" step="10000" class="p-3 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 text-white transition duration-200">
+            <!-- LEFT COLUMN: INPUTS & CONTROLS -->
+            <div class="lg:col-span-1 space-y-6">
+
+                <!-- Industry Selector -->
+                <div class="bg-gray-800 p-6 rounded-xl border border-gray-700 shadow-xl">
+                    <label class="block text-sm font-bold text-blue-300 mb-2">Select Industry Model</label>
+                    <select id="industry_selector"
+                        class="w-full p-3 rounded-lg bg-gray-900 border border-gray-600 text-white focus:ring-2 focus:ring-blue-500 outline-none">
+                        <option value="saas">SaaS (Recurring Revenue)</option>
+                        <option value="ecommerce">E-commerce (Transaction Volume)</option>
+                        <option value="fintech">Fintech (Risk & Compliance)</option>
+                        <option value="logistics">Logistics (Supply Chain)</option>
+                    </select>
                 </div>
 
-                <!-- 2. Annual Target Market Inefficiency -->
-                <div class="flex flex-col">
-                    <label for="market_inefficiency" class="text-sm font-medium text-gray-400 mb-1">Annual Market Inefficiency Cost ($)</label>
-                    <input type="number" id="market_inefficiency" value="5000000" min="100000" step="100000" class="p-3 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 text-white transition duration-200">
+                <!-- Inputs Form -->
+                <div class="bg-gray-800 p-6 rounded-xl border border-gray-700 shadow-xl space-y-4">
+                    <h2 class="text-lg font-semibold text-white border-b border-gray-700 pb-2">Fragility Parameters</h2>
+
+                    <div>
+                        <label class="text-xs font-semibold text-gray-400 uppercase">Recoverable Revenue Leakage
+                            ($/yr)</label>
+                        <input type="number" id="revenue_leakage"
+                            class="w-full mt-1 p-2 rounded bg-gray-900 border border-gray-600 text-white focus:border-blue-500 outline-none">
+                    </div>
+
+                    <div>
+                        <label class="text-xs font-semibold text-gray-400 uppercase">Input Capital ($)</label>
+                        <input type="number" id="investment"
+                            class="w-full mt-1 p-2 rounded bg-gray-900 border border-gray-600 text-white focus:border-blue-500 outline-none">
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="text-xs font-semibold text-gray-400 uppercase">Fragility Factor (%)</label>
+                            <input type="number" id="fragility_factor"
+                                class="w-full mt-1 p-2 rounded bg-gray-900 border border-gray-600 text-white focus:border-blue-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="text-xs font-semibold text-gray-400 uppercase">Prev. Rate (x)</label>
+                            <input type="number" id="prevention_rate"
+                                class="w-full mt-1 p-2 rounded bg-gray-900 border border-gray-600 text-white focus:border-blue-500 outline-none">
+                        </div>
+                    </div>
                 </div>
 
-                <!-- 3. Target Market Capture % -->
-                <div class="flex flex-col">
-                    <label for="market_capture" class="text-sm font-medium text-gray-400 mb-1">Target Market Capture % (Goal)</label>
-                    <input type="number" id="market_capture" value="5" min="1" max="100" step="1" class="p-3 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 text-white transition duration-200">
+                <!-- Strategic Narrative -->
+                <div class="bg-blue-900/20 p-4 rounded-xl border border-blue-800/50">
+                    <p class="text-sm text-blue-200 italic">
+                        "We don't sell software; we sell <span class="font-bold text-white">The Only Architectural
+                            Layer</span> that reclaims the <span id="narrative_amount"
+                            class="font-bold text-white">$0</span> of revenue you currently lose to data errors every
+                        year."
+                    </p>
                 </div>
-
-                <!-- 4. Operational Efficiency Gain (The Flow's Value) -->
-                <div class="flex flex-col">
-                    <label for="efficiency_gain" class="text-sm font-medium text-gray-400 mb-1">Logic Flow Efficiency Gain (x Current Cost)</label>
-                    <input type="number" id="efficiency_gain" value="5" min="1" max="20" step="0.5" class="p-3 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 text-white transition duration-200">
-                </div>
-
             </div>
-        </div>
 
-        <!-- OUTPUTS SECTION (THE DOLLARS AND SENSE) -->
-        <div id="outputs">
-            <h2 class="text-xl font-semibold mb-4 border-b pb-2 border-gray-700 text-blue-300">Projected Outcomes (5-Year Horizon)</h2>
+            <!-- RIGHT COLUMN: ENGINE & OUTPUTS -->
+            <div class="lg:col-span-2 flex flex-col space-y-6">
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-
-                <!-- 1. TOTAL PROJECTED REVENUE -->
-                <div class="metric-card bg-[#1e2430] p-5 rounded-xl">
-                    <p class="text-sm font-medium text-gray-400 uppercase">Total Projected Revenue</p>
-                    <p id="net_revenue" class="text-3xl font-bold mt-1 text-green-400">$0</p>
+                <!-- THE ENGINE: LIVE AGENT LOGS -->
+                <div
+                    class="bg-black rounded-xl border border-gray-800 shadow-2xl overflow-hidden flex flex-col h-64 font-mono text-sm relative">
+                    <div class="bg-gray-900 px-4 py-2 border-b border-gray-800 flex justify-between items-center">
+                        <span class="text-green-400 text-xs font-bold tracking-wider flex items-center">
+                            <span class="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></span>
+                            LIVE AGENTIC ACTIVITY
+                        </span>
+                        <span class="text-gray-600 text-xs">v2.4.0-stable</span>
+                    </div>
+                    <div id="console-output" class="p-4 overflow-y-hidden flex-1 text-gray-300 space-y-1">
+                        <!-- Logs injected by JS -->
+                    </div>
+                    <div class="absolute bottom-4 right-4 text-xs text-gray-600">
+                        PROCESSING...
+                    </div>
                 </div>
 
-                <!-- 2. ROI (THE SALE) -->
-                <div class="metric-card bg-[#1e2430] p-5 rounded-xl">
-                    <p class="text-sm font-medium text-gray-400 uppercase">Return on Investment (ROI)</p>
-                    <p id="roi_output" class="text-3xl font-bold mt-1 text-yellow-400">0%</p>
+                <!-- Financial projected cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div class="metric-card p-5 rounded-xl">
+                        <p class="text-xs font-bold text-gray-500 uppercase tracking-widest">Protected Revenue</p>
+                        <p id="protected_revenue" class="text-2xl font-bold text-green-400 mt-1">$0</p>
+                    </div>
+                    <div class="metric-card p-5 rounded-xl bg-gray-800 border-l-4 border-amber-500">
+                        <p class="text-xs font-bold text-gray-500 uppercase tracking-widest">Efficiency ROI</p>
+                        <p id="roi_output" class="text-2xl font-bold text-amber-400 mt-1">0%</p>
+                    </div>
+                    <div class="metric-card p-5 rounded-xl bg-gray-800 border-l-4 border-purple-500">
+                        <p class="text-xs font-bold text-gray-500 uppercase tracking-widest">Agent Multiple</p>
+                        <p id="agent_multiple" class="text-2xl font-bold text-purple-400 mt-1">0x</p>
+                    </div>
                 </div>
 
-                <!-- 3. Efficiency Multiple -->
-                <div class="metric-card bg-[#1e2430] p-5 rounded-xl">
-                    <p class="text-sm font-medium text-gray-400 uppercase">Efficiency Multiple</p>
-                    <p id="efficiency_multiple" class="text-3xl font-bold mt-1 text-blue-400">0x</p>
+                <!-- graph placeholder / visual -->
+                <div
+                    class="bg-gray-800/50 rounded-xl p-6 border border-gray-700 flex items-center justify-center flex-1">
+                    <div class="text-center">
+                        <svg class="w-16 h-16 text-gray-600 mx-auto mb-2" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z">
+                            </path>
+                        </svg>
+                        <p class="text-gray-400 text-sm">Real-time Anomaly Forecasting</p>
+                        <p class="text-xs text-gray-600">(Simulated Visualization)</p>
+                    </div>
                 </div>
-
             </div>
-        </div>
-
-        <!-- STRATEGIC NARRATIVE FOOTER -->
-        <div class="mt-10 p-6 bg-[#1a1e26] border border-gray-700 rounded-xl">
-            <h3 class="text-lg font-semibold text-blue-400 mb-2">The Strategic Value Proposition:</h3>
-            <p class="text-gray-400">
-                "We built this system with minimal resources, proving its technical viability. The capital requested above is not for R&D, but for **rapid market penetration and scaling**—funding a team to capture the **<span id="capture_value" class="text-green-300 font-bold">$0</span>** inefficiency you see calculated live above. We are investing in your return from day one."
-            </p>
         </div>
     </div>
 
     <script>
-        // DOM Elements
+        // --- DATA PRESETS FOR INDUSTRIES ---
+        const INDUSTRY_PRESETS = {
+            'saas': { leakage: 5000000, investment: 150000, fragility: 12, protection: 4.5 },
+            'ecommerce': { leakage: 8500000, investment: 200000, fragility: 18, protection: 3.2 },
+            'fintech': { leakage: 12000000, investment: 300000, fragility: 8, protection: 6.0 },
+            'logistics': { leakage: 4200000, investment: 80000, fragility: 15, protection: 2.8 }
+        };
+
+        // --- DOM Elements ---
+        const industrySelect = document.getElementById('industry_selector');
+        const leakageInput = document.getElementById('revenue_leakage');
         const investmentInput = document.getElementById('investment');
-        const marketInefficiencyInput = document.getElementById('market_inefficiency');
-        const marketCaptureInput = document.getElementById('market_capture');
-        const efficiencyGainInput = document.getElementById('efficiency_gain');
+        const fragilityInput = document.getElementById('fragility_factor');
+        const preventionInput = document.getElementById('prevention_rate');
 
-        const netRevenueOutput = document.getElementById('net_revenue');
-        const roiOutput = document.getElementById('roi_output');
-        const efficiencyMultipleOutput = document.getElementById('efficiency_multiple');
-        const captureValueSpan = document.getElementById('capture_value');
+        const protectedRevenueOut = document.getElementById('protected_revenue');
+        const roiOut = document.getElementById('roi_output');
+        const multipleOut = document.getElementById('agent_multiple');
+        const narrativeAmount = document.getElementById('narrative_amount');
+        const consoleOutput = document.getElementById('console-output');
 
-        // CONSTANTS
-        const TIME_HORIZON_YEARS = 5; // Standard exit horizon for VC funding
+        // --- CALCULATOR LOGIC ---
+        function calculate() {
+            const L = parseFloat(leakageInput.value) || 0;
+            const I = parseFloat(investmentInput.value) || 0;
+            const F = parseFloat(fragilityInput.value) / 100 || 0;
+            const P = parseFloat(preventionInput.value) || 1;
 
-        // Debounce function to limit frequent recalculations
-        let recalculateTimeout;
+            // Simple Model: Projected Value = (Leakage * Fragility) * Prevention_Multiplier * 5_Years
+            const annualValue = L * F;
+            const totalValue = annualValue * P * 5;
+            const net = totalValue - I;
 
-        /**
-         * Calculates and updates the dashboard metrics based on user input.
-         */
-        function recalculateMetrics() {
-            clearTimeout(recalculateTimeout);
-            recalculateTimeout = setTimeout(() => {
-                // 1. Get Sanitized Inputs (Convert to float and handle potential NaN/empty values)
-                const P = parseFloat(investmentInput.value) || 0; // Principal Investment
-                const M_annual = parseFloat(marketInefficiencyInput.value) || 0; // Annual Market Inefficiency
-                const C_percent = parseFloat(marketCaptureInput.value) / 100 || 0; // Target Capture Percentage (converted to decimal)
-                const E_gain = parseFloat(efficiencyGainInput.value) || 1; // Logic Flow Efficiency Multiple (Min 1x)
+            let roi = 0;
+            if (I > 0) roi = (net / I) * 100;
 
-                // --- 2. CALCULATIONS ---
+            // Formatting
+            const fmt = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
 
-                // A. Annual Revenue from Market Capture
-                // This is the annual value of the inefficiency we successfully capture/solve.
-                const annualRevenue = M_annual * C_percent;
+            protectedRevenueOut.innerText = fmt.format(totalValue);
+            roiOut.innerText = roi.toFixed(0) + "%";
+            multipleOut.innerText = P.toFixed(1) + "x";
+            narrativeAmount.innerText = fmt.format(annualValue);
 
-                // B. Total Net Gain (Revenue over 5 years, accounting for the efficiency multiple)
-                // We use the efficiency gain (E_gain) as a conservative growth multiplier on the revenue stream over the 5-year period.
-                const totalGrossRevenue = annualRevenue * TIME_HORIZON_YEARS * E_gain;
-
-                // C. Net Gain (Total Gross Revenue minus the initial investment P)
-                const netGain = totalGrossRevenue - P;
-                
-                // D. ROI Calculation
-                let roi = 0;
-                if (P > 0) {
-                    roi = (netGain / P) * 100;
-                }
-
-                // --- 3. FORMATTING AND DISPLAY ---
-
-                // Format as Currency
-                const formatter = new Intl.NumberFormat('en-US', {
-                    style: 'currency',
-                    currency: 'USD',
-                    minimumFractionDigits: 0,
-                    maximumFractionDigits: 0,
-                });
-
-                // Update Outputs
-                netRevenueOutput.textContent = formatter.format(totalGrossRevenue);
-                
-                // ROI Output (Handle 0 or negative for pitch narrative)
-                roiOutput.textContent = `${roi.toFixed(0)}%`;
-                if (roi < 0) {
-                    roiOutput.classList.remove('text-yellow-400');
-                    roiOutput.classList.add('text-red-500');
-                } else {
-                    roiOutput.classList.add('text-yellow-400');
-                    roiOutput.classList.remove('text-red-500');
-                }
-
-                // Efficiency Multiple (This is E_gain, presented as a metric)
-                efficiencyMultipleOutput.textContent = `${E_gain.toFixed(1)}x`;
-
-                // Update Strategic Narrative Footer
-                captureValueSpan.textContent = formatter.format(M_annual * C_percent);
-
-            }, 200); // Wait 200ms before recalculating
+            // Color coding
+            roiOut.className = `text-2xl font-bold mt-1 ${roi > 0 ? 'text-amber-400' : 'text-red-500'}`;
         }
 
-        // Attach event listeners to all input fields
-        investmentInput.addEventListener('input', recalculateMetrics);
-        marketInefficiencyInput.addEventListener('input', recalculateMetrics);
-        marketCaptureInput.addEventListener('input', recalculateMetrics);
-        efficiencyGainInput.addEventListener('input', recalculateMetrics);
+        // --- PRESET HANDLER ---
+        function loadPreset(key) {
+            const data = INDUSTRY_PRESETS[key];
+            leakageInput.value = data.leakage;
+            investmentInput.value = data.investment;
+            fragilityInput.value = data.fragility;
+            preventionInput.value = data.protection;
+            calculate();
+        }
 
-        // Run calculation on load
-        recalculateMetrics();
+        industrySelect.addEventListener('change', (e) => loadPreset(e.target.value));
+        [leakageInput, investmentInput, fragilityInput, preventionInput].forEach(el => el.addEventListener('input', calculate));
+
+        // Initial Load
+        loadPreset('saas');
+
+        // --- AGENT CONSOLE SIMULATOR ---
+        const AGENT_ACTIONS = [
+            { agent: "SCHEMA-WATCH", msg: "Detected type change in 'user_id' output.", color: "text-red-400" },
+            { agent: "LINEAGE-MAP", msg: "Tracing impact... 3 downstream dashboards affected.", color: "text-yellow-400" },
+            { agent: "AUTO-FIX", msg: "Reverted schema change #4021 via GitOps.", color: "text-green-400" },
+            { agent: "RL-OPTIMIZER", msg: "Adjusting compute allocation for night batch.", color: "text-blue-400" },
+            { agent: "NULL-GUARD", msg: "Blocked ingestion: Null rate > 5% on 'email'.", color: "text-red-300" },
+            { agent: "NOTIFIER", msg: "Slack alert sent to Data Eng team.", color: "text-gray-400" },
+            { agent: "COST-SAVER", msg: "Idle cluster detected. Scaling down...", color: "text-green-300" }
+        ];
+
+        function addLog() {
+            const item = AGENT_ACTIONS[Math.floor(Math.random() * AGENT_ACTIONS.length)];
+            const time = new Date().toISOString().split('T')[1].split('.')[0];
+
+            const line = document.createElement('div');
+            line.className = "console-line text-xs font-mono";
+            line.innerHTML = `<span class="text-gray-500">[${time}]</span> <span class="font-bold underline ${item.color}">${item.agent}</span>: ${item.msg}`;
+
+            consoleOutput.appendChild(line);
+
+            if (consoleOutput.children.length > 8) {
+                consoleOutput.removeChild(consoleOutput.children[0]);
+            }
+        }
+
+        setInterval(addLog, 1500); // Add log every 1.5s
+        addLog(); // Initial log
+        addLog();
+
     </script>
 </body>
+
 </html>
